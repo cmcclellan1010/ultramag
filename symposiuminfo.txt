@@ -1,0 +1,12 @@
+TITLE:
+Obtaining Light Curves of Ultra-Magnetic B Stars with the Evryscope All-Sky Telescope
+
+AUTHORS:
+B. Connor McClellan, Stephen S. Eikenberry
+(Cite Nicholas M. Law, Scott M. Ransom)
+
+ABSTRACT:
+There are currently only 5 known stars which possess rigidly rotating magnetospheres (RRM). These rare, fast-rotating stars are thought to trap circumstellar material in their high magnetic fields, and as a result have periodic variations in brightness which manifest in the star's light curve. We describe a method for time series analysis of two of these sources (HR 5907 and HR 7355) using PRESTO, a search-and-analysis software suite designed for finding pulsars. We reduce data obtained from Evryscope, a telescope that monitors a 8,000 square degree field with a time resolution of two minutes. We present the results of our analysis procedure on a set of sample data, and discuss the potential for obtaining light curves from our two target stars pending the coming release of Evryscope data on the region of the sky in which the stars are located.
+
+REVISED:
+There are currently only 5 known stars which possess rigidly rotating magnetospheres (RRM). These rare,  fast-rotating stars are thought to trap circumstellar material in their high magnetic fields, and as a result have periodic variations in brightness which manifest in the star's light curve. We describe a method for time series analysis of two of these sources (HR 5907 and HR 7355) using PRESTO, a search-and-analysis software suite originally designed for finding pulsars. We reduce data obtained from Evryscope, a telescope that monitors a 8,000 square degree field with a time resolution of two minutes. We present the results of our analysis procedure on a set of sample data, and discuss the potential for obtaining light curves from our two target stars pending the coming release of Evryscope data on the region of the sky in which the stars are located.
