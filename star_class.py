@@ -13,9 +13,11 @@ class Star(object):
         self.APASS_gmag = performance_data[self.row_index][0]
         self.RA = performance_data[self.row_index][1]
         self.DEC = performance_data[self.row_index][2]
-        self.mjd = self.main_data[:, 0]
-        self.Evry_mag = self.main_data[:, 1]
-        self.err = self.main_data[:, 2]
+
+        sort = self.main_data[:, 0].argsort()
+        self.mjd = self.main_data[:, 0][sort]
+        self.Evry_mag = self.main_data[:, 1][sort]
+        self.err = self.main_data[:, 2][sort]
 
     def find_delta_t(self):
         sorted = np.sort(self.mjd)
