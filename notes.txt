@@ -1,0 +1,35 @@
+WORKFLOW:
+
+1. Use chisq.py to load star files, split into bins, and calculate chi squared
+ scalefactor for those bins. Output is 'scalefactors.p' and 'starbins.p' (file
+ is very large!)
+3. Use lightcurves.py to view the lightcurves with their new, accurate error 
+bars and chi squared values 
+
+Invidual Meeting Oct 5:
+    Chi squared with new errorbars means something
+    Sort by chi squared (new errorbars)
+        Grab the most variable stars we have (in chi squared terms), look at 
+        the light curves by eye
+
+Group Meeting Oct 9:
+    Fourier transform some of the interesting light curves
+    Figure out what's happening to the chi squared -- they should peak at 1.
+
+Group Meeting Oct 23:
+    My talking points:
+        Fixed chi squared scaling - I was multiplying the existing errorbars by
+        the scale factor, but the right thing to do is multiply by the square
+        root of the scale factor (since chisq nu equation has uncertainty sq
+        in denominator)
+        
+        Now, histogram peaks at 1 as expected, with a couple notable stars up
+        in the tens and even hundreds range, indicating variability.
+        
+        [look at FFTs of interesting light curves]
+
+    Notes:
+        
+        
+
+

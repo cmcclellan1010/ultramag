@@ -1,0 +1,16 @@
+fixed datatype error in dat file
+scaled up data to get an actual FFT from presto (YAY)
+
+Chi square prefiltering
+	Take only nonzero flux points
+	Include errors? Convert error (mag) into error (flux)
+	Calculate reduced chi squared to a 0th order polynomial fit
+		IF ~1, then should be non-variable
+
+
+
+EIKE NOTES:
+
+Don't fit to horizontal line -- fit to 1st order polynomial
+
+Finish out the FFT process on one star before messing with the chi square!
