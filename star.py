@@ -61,14 +61,17 @@ class Star(object):
 
 
     def filter(self, tolerance=0.1):
-        self.data.remove_rows(self.data['evry_err'] > 1)
-        self.data.remove_rows(self.data['evry_err'] < 0)
-        self.data.sort('evry_err')
-        self.data.reverse()
-        n_to_kill = int(np.round(0.1*len(self.data)))
-        self.data.remove_rows(range(n_to_kill))
-        self.data.sort('mjd')
-        self.filtered = True
+        if self.filtered == True:
+            return
+        else:
+            self.data.remove_rows(self.data['evry_err'] > 1)
+            self.data.remove_rows(self.data['evry_err'] < 0)
+            self.data.sort('evry_err')
+            self.data.reverse()
+            n_to_kill = int(np.round(0.1*len(self.data)))
+            self.data.remove_rows(range(n_to_kill))
+            self.data.sort('mjd')
+            self.filtered = True
 
 
     def rebin(self):
@@ -196,7 +199,7 @@ class Star(object):
         nights.append(self.data[(gap_indices[-1]+1):])
         return nights
 
-    def export(self, rescale=True):
+    def export(self, path='', rescale=True):
         if rescale:
             
             try:
@@ -210,9 +213,9 @@ class Star(object):
             nonzero_loc = np.where(data != 0.)
             median = np.median(data[nonzero_loc])
             data[zero_loc] = median
-            data.astype(np.float32).tofile(str(self.id)+'.dat')
+            data.astype(np.float32).tofile(path+str(self.id)+'.dat')
         else:
-            self.rebin()[0].astype(np.float32).tofile(str(self.id) + '.dat')
+            self.rebin()[0].astype(np.float32).tofile(path + str(self.id) + '.dat')
 
         descriptors = np.array([' Data file name without suffix          =  ',
                                 ' Telescope used                         =  ',
@@ -240,7 +243,7 @@ class Star(object):
                            '400.0', 'unset', '', ''], dtype=str)
 
         inf = np.core.defchararray.add(descriptors, values)
-        np.savetxt(str(self.id)+'.inf', inf, fmt='%s')
+        np.savetxt(path+str(self.id)+'.inf', inf, fmt='%s')
 
 if __name__ == '__main__':
     pass
