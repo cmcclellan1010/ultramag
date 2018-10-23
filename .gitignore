@@ -4,3 +4,4 @@
 *.dat
 *.inf
 *.fft
+__pycache__
