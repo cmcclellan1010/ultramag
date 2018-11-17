@@ -1,0 +1,37 @@
+NSF Graduate Research Fellowship application
+Lab Report
+Visiting Harvard CfA Thursday - Sunday
+
+Ask Paul and Desika and Laura. 
+
+Have light curves, can FFT -- next, FFT all of them and see what signals are common, i.e., which might be real/fake?
+
+Fold pulse profiles using PRESTO
+
+------------------------------------------------------------------
+
+
+Atmospheric dispersion:
+    Prism effect towards the horizon
+    If you look at images very closely, and at high resolution, you see blue light and red light in separate locations
+    Red light gets bent less than the blue light
+
+    Parallactic angle - shortest angular distance to the horizon
+        Amplitude of dispersion depends on distance from zenith
+        The effect is minimal for seeing-limited observations
+            Especially in infrared
+
+    AO system usually takes care of this
+    Mostly care about it in optical
+        V band atmo dispersion is about 0.2 arcsec (usually less than seeing)
+        
+    If you set up the slit (for spectroscopy) to be aligned with the parallactic angle, all the light goes into the slit and it doesn't end up mattering. 
+    
+    But, what if you have a fiber spectrograph? Then you pretty much can't get both colors -- either blue or red. So what do you do?
+        Use an ADC!
+
+    ADC:
+        Put a prism in your optical system. Blue light comes in, gets refracted. Red light comes in, goes out a different angle. 
+        Add another identical prism underneath. Rotate the prisms with respect to each other (on same axis) to cancel out the parallactic angle and orient it correctly on the sky. With the right amplitude in the opposite direction, it cancels out the effect of AD.
+
+    Commonly used on big telescopes where image quality is really good.

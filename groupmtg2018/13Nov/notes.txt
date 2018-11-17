@@ -1,0 +1,32 @@
+My updates:
+    Grad school applications
+    Summer research follow-up VLA proposal was approved
+    Prepared time series data for FFT-ing (rebinned), next step is to FFT all
+        the stars and check out which kinds of signals are common, which stand
+        out, etc.
+
+
+Notes:
+
+To characterize 'noise' in maxi j according to a set of reference stars...
+    Calculate average of reference star fluxes for each time point
+    Subtract average reference star from all MAXI J points. This 
+        removes the clouds, etc, from the maxi observations
+    Subtract average reference star from TYCHO star. Same as above.
+    Now we have MAXI and TYCHO, with variation in throughput from the night 
+        subtracted off.
+    To look for variability, we want to confirm that Tycho is not variable
+    and MAXI is. 
+    
+    Leave stuff in instrumental magnitudes. mag = 2.5log(ADU).
+    
+    Now what is sigma squared?
+        sigma^2 = SUM(TYCHO(t) - AVG(TYCHO(all times))^2/N)
+        where N is the number of time points.
+        This is sigma for a non-variable star.
+
+    Now, chi^2 for maxi is (1/(sigma^2))*SUM(MAXI(t) - AVG(MAXI(all times))^2)    
+
+    chi^2_nu should equal 1 for non-variability.
+
+    Then, 'probability confidence interval'.
