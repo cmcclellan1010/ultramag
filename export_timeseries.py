@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from astropy.table import Table
 import os.path
 
-starbins = pickle.load(open('starbins.p', 'rb'))
-scalefactors = pickle.load(open('scalefactors.p', 'rb'))
+starbins = pickle.load(open('/media/connor/Lore/ultramag/starbins.p', 'rb'))
+scalefactors = pickle.load(open('/media/connor/Lore/ultramag/scalefactors.p', 'rb'))
 scalebins = deepcopy(starbins)
 
 for i in range(len(scalebins)):
@@ -18,6 +18,7 @@ for i in range(len(scalebins)):
 scalestars = np.concatenate(scalebins).ravel()
 
 if os.path.isfile('/media/connor/Lore/ultramag/PRESTO/id_chsq_table.dat'):
+    chsqs = np.array(list(Table.read('/media/connor/Lore/ultramag/PRESTO/id_chsq_table.dat', format='ascii')['CHISQ']))
     scalestars = np.flip(scalestars[np.argsort(chsqs)], axis=0)
     starids = [scalestars[i].id for i in range(len(scalestars))]
 else:

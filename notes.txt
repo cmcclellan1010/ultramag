@@ -30,6 +30,185 @@ Group Meeting Oct 23:
 
     Notes:
         
+Individual Meeting Nov 30
+    make histogram of powers
+    are there certain frequencies where that happens?
+        See a lot of stuff, is that actual signal or not?
+
+
+-------------------------------------------------------------------------------
+
+Individual Meeting Dec 7
+    Questions:
+        Details of reading complex array
+            Power is sqrt(x^2+y^2)?
+            How to switch from time bins to frequency bins?
+            Normalized power?
         
+        "Histogram of powers"
+            Does this mean just n vs. power? Basically a measure of how common
+            it is to get a certain power (regardless of what frequency its at) 
+            to get a better understanding of what our noise threshold should 
+            be?
+
+            FOR A GIVEN STAR
+        
+            OR
+
+            For some frequency range, what does a histogram of powers at that 
+            frequency look like? If power is high for all stars, that means 
+            it's a common signal to measure.
+
+Reading complex array - magnitude is A*A if A is your complex number
+Our time resolution is 2 minutes, so the maximum frequency is 1/4min
+    Resolution is 1/(total duration of time series)
+    Start time, end time, data points in between
+
+For a given star, power histogram with n on y axis and power on x axis
+
+Individual Meeting Jan 18 2019
+
+
+
+=======================================================
+
+Individual Meeting Jan 25
+
+Email Octavi with healpix number for our region, reply to Eikenberry's email [DONE]
+
+Email Scott, show him what we're getting by reading in the complex arrays like he is
+    Tell him it's not like what we see in presto, ask about why there's a difference
+    Show him the complex number we get as the first power (this should be real)
+    Powers are much larger than they should be, even though normalized
+    [DONE]
+
+=======================================================
+
+Group Meeting Jan 30 2019
+
+Answers from Scott
+------------------
+
+> First data point in the FFT is complex. Why?
+
+That is due to the way that the DC and Nyquist values (both real) are packed into that first complex value. The real part is the DC value and the complext part is the Nyquist. This is a packing technique used by quite a few FFT codes, because it lets the FFT'd data be the same size as the input data.
+
+> FFT doesn't look like it does in PRESTO
+
+You might need to change to "raw" normalization for that. By default the powers are normalized via a running median.
+
+        >> Does he mean change PRESTO or change our script?
+            He's talking about PRESTO. 
+
+> The powers are way too large.
+
+See above about the normalization.
+
+
+Things to do
+------------
+
+Change PRESTO settings to use raw normalization.
+
+Steve out of town this weekend.
+
+
+
+
+
+Individual Meeting Feb 1 2019
+============================================
+
+Our plots and PRESTO do match up (yay)
+
+Email from Octavi -- pick out an interesting source (or two?)
+
+Grad school responses
+
+
+
+"Short term variability of evolved massive stars with TESS"
+     - Find their dataset, send it through PRESTO
+     - 2 min sampling rate
+     - See if it looks like what they have in their paper, just examine the FFT in PRESTO
+     - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

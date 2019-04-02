@@ -25,6 +25,7 @@ class Star(object):
 
 
     def get_data(self):
+
         performance_star_ids = np.loadtxt(self.datapath+"performance.txt", dtype=np.int64, delimiter=' ', usecols=1)
         performance_data = np.loadtxt(self.datapath+"performance.txt", dtype=np.float64, delimiter=' ', usecols=(3, 4, 5))
 
@@ -45,9 +46,9 @@ class Star(object):
 
         sort = self.data[:, 0].argsort()
         mjd = self.data[:, 0][sort]
-        evry_mag = self.data[:, 1][sort]
-        evry_err = self.data[:, 2][sort]
-        self.data = Table([mjd, evry_mag, evry_err], names=['mjd', 'evry_mag', 'evry_err'], masked=True)
+        mag = self.data[:, 1][sort]
+        err = self.data[:, 2][sort]
+        self.data = Table([mjd, mag, err], names=['mjd', 'mag', 'err'], masked=True)
 
 
     def find_delta_t(self):
@@ -64,9 +65,9 @@ class Star(object):
         if self.filtered == True:
             return
         else:
-            self.data.remove_rows(self.data['evry_err'] > 1)
-            self.data.remove_rows(self.data['evry_err'] < 0)
-            self.data.sort('evry_err')
+            self.data.remove_rows(self.data['err'] > 1)
+            self.data.remove_rows(self.data['err'] < 0)
+            self.data.sort('err')
             self.data.reverse()
             n_to_kill = int(np.round(0.1*len(self.data)))
             self.data.remove_rows(range(n_to_kill))
@@ -91,8 +92,8 @@ class Star(object):
         t = (np.arange(bins)*t_baseline)+t0
         rebinned_flux = np.zeros(bins)
         rebinned_err = np.zeros(bins)
-        Evry_flux = 10.0**(-0.4*self.data['evry_mag'])
-        Evry_flux_err = np.absolute(Evry_flux*self.data['evry_err']*np.log(10)/(-2.5))
+        Evry_flux = 10.0**(-0.4*self.data['mag'])
+        Evry_flux_err = np.absolute(Evry_flux*self.data['err']*np.log(10)/(-2.5))
 
         for i in range(len(self.data['mjd'])):
             j = np.where(t <= self.data['mjd'][i])[0][-1]
@@ -160,19 +161,19 @@ class Star(object):
 
         x = np.linspace(0, len(self.data) - 1, len(self.data))
 
-        z = np.polyfit(x, self.data['evry_mag'], 1)
-        chsq = np.sum(((self.data['evry_mag'] - np.polyval(z, x)) ** 2.)/self.data['evry_err']**2.)/(len(self.data)-1)
+        z = np.polyfit(x, self.data['mag'], 1)
+        chsq = np.sum(((self.data['mag'] - np.polyval(z, x)) ** 2.)/self.data['err']**2.)/(len(self.data)-1)
         p = np.poly1d(z)
 
         if plot:
             fig = plt.figure(figsize=[10,4])
             ax = fig.add_subplot(111)
-            ax.errorbar(x, self.data['evry_mag'], yerr=self.data['evry_err'], ms=2, fmt='ko', elinewidth=.5, alpha=0.5)
+            ax.errorbar(x, self.data['mag'], yerr=self.data['err'], ms=2, fmt='ko', elinewidth=.5, alpha=0.5)
             ax.plot(x, p(x), 'b--')
             ax.set_xlabel('Index')
             ax.set_ylabel('Evryscope Magnitude')
             ax.text(0.1, 0.9, "Reduced Chi Squared: {:.4f}".format(chsq), transform=ax.transAxes)
-            plt.title('Magnitude = {:.2f} Mag'.format(np.mean(self.data['evry_mag'])))
+            plt.title('Magnitude = {:.2f} Mag'.format(np.mean(self.data['mag'])))
             plt.show()
 
         return chsq
